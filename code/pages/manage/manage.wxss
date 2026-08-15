@@ -1,0 +1,196 @@
+/* pages/manage/manage.wxss */
+.page {
+  padding-bottom: 180rpx; /* 为自定义底部导航栏预留空间 */
+}
+
+.stats {
+  display: flex;
+  margin-bottom: 24rpx;
+}
+.stat-card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx 0;
+  text-align: center;
+  margin-right: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.stat-card:last-child {
+  margin-right: 0;
+}
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+.stat-num.online {
+  color: #34c759;
+}
+.stat-num.offline {
+  color: #c0c4cc;
+}
+.stat-label {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 8rpx;
+}
+
+/* 列表头 */
+.list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8rpx 8rpx 16rpx;
+}
+.add-btn {
+  font-size: 28rpx;
+  color: #12b7b5;
+  font-weight: 600;
+}
+
+/* 设备卡片 */
+.device-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.card-main {
+  display: flex;
+  align-items: center;
+}
+.card-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(135deg, #e6f7f7, #d3efef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.card-mid {
+  flex: 1;
+  min-width: 0;
+}
+.name-row {
+  display: flex;
+  align-items: center;
+}
+.device-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2d3d;
+  margin-right: 12rpx;
+  max-width: 240rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.device-type {
+  font-size: 20rpx;
+  color: #12b7b5;
+  background: #e6f7f7;
+  border-radius: 8rpx;
+  padding: 4rpx 10rpx;
+  flex-shrink: 0;
+}
+.device-value {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333;
+  margin-top: 8rpx;
+}
+.device-meta {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.online-line {
+  display: flex;
+  align-items: center;
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+.online-text {
+  font-size: 22rpx;
+  color: #666;
+}
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f0f1f5;
+}
+.op-btn {
+  margin-left: 16rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+.op-btn.edit {
+  background: #e6f7f7;
+  color: #12b7b5;
+}
+.op-btn.delete {
+  background: #fdecec;
+  color: #e64340;
+}
+.op-btn::after {
+  border: none;
+}
+
+/* 表单弹层 */
+.form-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+}
+.form-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.form-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28rpx;
+}
+.form-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+.form-close {
+  font-size: 36rpx;
+  color: #9aa0ac;
+  padding: 8rpx;
+}
+.picker-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-submit {
+  margin-top: 32rpx;
+}

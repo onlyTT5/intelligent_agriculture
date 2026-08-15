@@ -1,0 +1,57 @@
+<view class="page">
+
+  <!-- 连接状态条 -->
+  <view class="status-bar status-{{mqttStatus}}">
+    <view class="status-left">
+      <view class="status-dot"></view>
+      <text class="status-text">{{statusText}}</text>
+      <text class="status-err" wx:if="{{connectError}}">{{connectError}}</text>
+    </view>
+    <view class="status-action" wx:if="{{mqttStatus !== 'connected'}}" bindtap="onTapConnect">
+      <text class="status-action-text">重连</text>
+    </view>
+  </view>
+
+  <!-- 概览 -->
+  <view class="header">
+    <view class="header-title">我的设备</view>
+    <view class="header-sub">共 {{stats.total}} 台 · 在线 {{stats.online}} · 离线 {{stats.offline}}</view>
+  </view>
+
+  <!-- 设备卡片列表 -->
+  <view class="device-list" wx:if="{{!empty}}">
+    <view
+      class="device-card"
+      wx:for="{{devices}}"
+      wx:key="topic"
+      data-topic="{{item.topic}}"
+      bindtap="onTapDevice"
+    >
+      <view class="card-icon">{{item._icon}}</view>
+      <view class="card-mid">
+        <view class="name-row">
+          <text class="device-name">{{item.name || item.topic}}</text>
+          <text class="device-type">{{item._typeLabel}}</text>
+        </view>
+        <view class="device-value">{{item._summary}}</view>
+        <view class="device-meta">主题 {{item.topic}} · {{item.lastUpdateText}}</view>
+      </view>
+      <view class="card-right">
+        <view class="online-line">
+          <view class="online-dot {{item._online ? 'online' : 'offline'}}"></view>
+          <text class="online-text">{{item._online ? '在线' : '离线'}}</text>
+        </view>
+        <view class="arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{empty}}">
+    <view class="empty-icon">📦</view>
+    <view class="empty-text">还没有添加设备</view>
+    <view class="empty-desc">前往「管理」页添加你的巴法云设备主题</view>
+    <button class="btn-primary" bindtap="goManage">去添加设备</button>
+  </view>
+
+</view>

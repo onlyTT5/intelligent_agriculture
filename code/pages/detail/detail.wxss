@@ -1,0 +1,228 @@
+/* pages/detail/detail.wxss */
+.detail-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #12b7b5, #0e9e9c);
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx;
+  margin-bottom: 24rpx;
+  color: #ffffff;
+}
+.detail-icon {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 26rpx;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.detail-info {
+  flex: 1;
+  min-width: 0;
+}
+.detail-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+.detail-topic {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 6rpx;
+}
+.detail-status {
+  display: flex;
+  align-items: center;
+  margin-top: 14rpx;
+}
+.detail-online {
+  font-size: 24rpx;
+  color: #ffffff;
+  margin-right: 20rpx;
+}
+.detail-last {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+.detail-header .online-dot.online {
+  background: #ffffff;
+  box-shadow: 0 0 8rpx rgba(255, 255, 255, 0.8);
+}
+.detail-header .online-dot.offline {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* 灯控 */
+.light-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.light-info {
+  flex: 1;
+  margin-right: 24rpx;
+}
+.light-state {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+.light-state.on {
+  color: #12b7b5;
+}
+.light-state.off {
+  color: #9aa0ac;
+}
+.light-desc {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 10rpx;
+  line-height: 1.5;
+}
+
+/* 传感器 */
+.sensor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10rpx;
+}
+.sensor-item {
+  flex: 1;
+  min-width: 40%;
+  margin: 10rpx;
+  background: #f5f6fa;
+  border-radius: 16rpx;
+  padding: 28rpx 20rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.sensor-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+.sensor-label {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 10rpx;
+}
+
+/* 原始消息 */
+.raw-msg {
+  background: #f5f6fa;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 26rpx;
+  color: #333;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+/* 指令 */
+.cmd-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.cmd-input {
+  flex: 1;
+  background: #f5f6fa;
+  border-radius: 12rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0 24rpx;
+  font-size: 26rpx;
+  margin-right: 16rpx;
+}
+.btn-small {
+  background: #12b7b5;
+  color: #ffffff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  line-height: 60rpx;
+  margin: 0;
+}
+.btn-small::after {
+  border: none;
+}
+
+/* 消息记录 */
+.log-list {
+  max-height: 480rpx;
+  overflow: hidden;
+}
+.log-item {
+  display: flex;
+  align-items: baseline;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #f0f1f5;
+}
+.log-item:last-child {
+  border-bottom: none;
+}
+.log-time {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  width: 220rpx;
+  flex-shrink: 0;
+}
+.log-msg {
+  font-size: 26rpx;
+  color: #333;
+  word-break: break-all;
+  flex: 1;
+}
+
+/* 操作按钮 */
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24rpx;
+}
+
+/* 微信预警 */
+.alert-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+.alert-hint {
+  margin-top: 16rpx;
+}
+.alert-actions {
+  margin-top: 20rpx;
+  text-align: left;
+}
+.alert-actions .btn-outline {
+  margin: 0;
+}
+.alert-save {
+  margin: 8rpx 0 0;
+}
+.alert-result {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.alert-ok.success {
+  color: #34c759;
+}
+.alert-ok.fail {
+  color: #e64340;
+}
+.alert-time {
+  margin-left: 12rpx;
+  color: #9aa0ac;
+}
+.alert-err {
+  margin-left: 8rpx;
+  color: #e64340;
+  word-break: break-all;
+}

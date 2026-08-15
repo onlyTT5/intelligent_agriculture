@@ -1,0 +1,100 @@
+<view class="page">
+
+  <!-- 连接状态 -->
+  <view class="conn-card status-{{mqttStatus}}">
+    <view class="conn-left">
+      <view class="conn-dot"></view>
+      <view class="conn-info">
+        <view class="conn-status">{{statusText}}</view>
+        <view class="conn-url">{{urlPreview}}</view>
+        <view class="conn-err" wx:if="{{connectError}}">{{connectError}}</view>
+      </view>
+    </view>
+    <view class="conn-actions">
+      <button class="conn-btn connect" wx:if="{{mqttStatus !== 'connected'}}" bindtap="onConnect">连接</button>
+      <button class="conn-btn disconnect" wx:else bindtap="onDisconnect">断开</button>
+    </view>
+  </view>
+
+  <!-- MQTT 连接配置 -->
+  <view class="card">
+    <view class="card-title">MQTT 连接配置</view>
+
+    <view class="form-item">
+      <view class="form-label">私钥（ClientId）</view>
+      <input class="form-input" placeholder="巴法云控制台的私钥" value="{{form.clientId}}" data-field="clientId" bindinput="onInput" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">服务器地址</view>
+      <input class="form-input" value="{{form.server}}" data-field="server" bindinput="onInput" />
+    </view>
+
+    <view class="form-row">
+      <view class="form-item half">
+        <view class="form-label">加密端口</view>
+        <input class="form-input" type="number" value="{{form.port}}" data-field="port" bindinput="onInput" />
+      </view>
+      <view class="form-item half">
+        <view class="form-label">路径</view>
+        <input class="form-input" value="{{form.path}}" data-field="path" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-item half">
+        <view class="form-label">心跳间隔（秒）</view>
+        <input class="form-input" type="number" value="{{form.keepAlive}}" data-field="keepAlive" bindinput="onInput" />
+      </view>
+      <view class="form-item half">
+        <view class="form-label">在线判定（秒）</view>
+        <input class="form-input" type="number" value="{{form.onlineTimeout}}" data-field="onlineTimeout" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-item switch-item">
+      <view class="switch-label">启动时自动连接</view>
+      <switch checked="{{form.autoConnect}}" color="#12b7b5" bindchange="onSwitchChange" />
+    </view>
+
+    <button class="btn-primary" bindtap="onSave">保存配置</button>
+    <view class="hint save-hint">认证方式：私钥作为 clientId，无需用户名密码。协议：MQTT 3.1.1（WebSocket 加密通道）。</view>
+  </view>
+
+  <!-- 微信通知 -->
+  <view class="card">
+    <view class="card-title">微信通知</view>
+    <view class="wechat-tip">设备数据超过预警阈值时，将通过巴法云向你的微信推送通知（如温度过高、湿度过高、CO2 浓度过高等）。</view>
+    <view class="wechat-step">
+      <view class="step-item">1. 打开巴法云控制台「绑定微信」扫码授权，并关注公众号「巴法云」</view>
+      <view class="step-item">2. 在「设备详情 → 微信预警」中开启阈值并保存</view>
+      <view class="step-item">3. 点击下方按钮测试是否收到通知</view>
+    </view>
+    <view class="wechat-actions">
+      <button class="btn-outline" size="mini" bindtap="onCopyBindUrl">复制绑定链接</button>
+      <button class="wechat-test-btn" size="mini" bindtap="onTestWechat" disabled="{{wechatTesting}}">{{wechatTesting ? '发送中…' : '发送测试通知'}}</button>
+    </view>
+    <view class="hint save-hint">已触发预警 {{alertLogCount}} 条 · 接口 apis.bemfa.com（需配置为 request 合法域名）。</view>
+  </view>
+
+  <!-- 本地数据 -->
+  <view class="card">
+    <view class="card-title">本地数据</view>
+    <view class="local-row">
+      <text>已添加设备</text>
+      <text class="local-num">{{deviceCount}} 台</text>
+    </view>
+    <view class="local-row">
+      <text>消息记录</text>
+      <text class="local-num">{{msgLogCount}} 条</text>
+    </view>
+  </view>
+
+  <!-- 清缓存 -->
+  <view class="card">
+    <view class="card-title">缓存管理</view>
+    <button class="btn-danger" bindtap="onClearCache">清空本地缓存</button>
+    <view class="hint save-hint">删除设备列表、连接设置与消息记录，恢复默认配置。</view>
+  </view>
+
+</view>

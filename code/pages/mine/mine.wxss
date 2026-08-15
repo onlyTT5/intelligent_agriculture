@@ -1,0 +1,173 @@
+/* pages/mine/mine.wxss */
+.page {
+  padding-bottom: 180rpx; /* 为自定义底部导航栏预留空间 */
+}
+
+.conn-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.conn-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.conn-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.status-connected .conn-dot {
+  background: #34c759;
+  box-shadow: 0 0 8rpx rgba(52, 199, 89, 0.6);
+}
+.status-connecting .conn-dot {
+  background: #f7b500;
+  animation: pulse 1s infinite;
+}
+.status-disconnected .conn-dot {
+  background: #c0c4cc;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.conn-info {
+  flex: 1;
+  min-width: 0;
+}
+.conn-status {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+.conn-url {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.conn-err {
+  font-size: 22rpx;
+  color: #e64340;
+  margin-top: 6rpx;
+}
+.conn-actions {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+.conn-btn {
+  font-size: 26rpx;
+  border-radius: 36rpx;
+  line-height: 64rpx;
+  padding: 0 32rpx;
+  margin: 0;
+}
+.conn-btn::after {
+  border: none;
+}
+.conn-btn.connect {
+  background: #12b7b5;
+  color: #ffffff;
+}
+.conn-btn.disconnect {
+  background: #f5f6fa;
+  color: #666;
+}
+
+/* 表单行 */
+.form-row {
+  display: flex;
+}
+.form-item.half {
+  flex: 1;
+  margin-right: 20rpx;
+}
+.form-item.half:last-child {
+  margin-right: 0;
+}
+.switch-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.switch-label {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.save-hint {
+  margin-top: 20rpx;
+}
+
+/* 本地数据 */
+.local-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #f0f1f5;
+  font-size: 28rpx;
+  color: #333;
+}
+.local-row:last-child {
+  border-bottom: none;
+}
+.local-num {
+  color: #12b7b5;
+  font-weight: 600;
+}
+
+/* 微信通知 */
+.wechat-tip {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.wechat-step {
+  background: #f5f6fa;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 20rpx;
+}
+.step-item {
+  font-size: 24rpx;
+  color: #555;
+  line-height: 1.8;
+}
+.wechat-actions {
+  display: flex;
+  align-items: center;
+}
+.wechat-actions .btn-outline {
+  margin: 0;
+  flex-shrink: 0;
+}
+.wechat-test-btn {
+  flex: 1;
+  margin-left: 16rpx;
+  background: linear-gradient(135deg, #12b7b5, #0e9e9c);
+  color: #ffffff;
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  line-height: 72rpx;
+}
+.wechat-test-btn::after {
+  border: none;
+}
+.wechat-test-btn[disabled] {
+  opacity: 0.6;
+}

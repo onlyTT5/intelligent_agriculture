@@ -1,0 +1,91 @@
+<view class="page">
+
+  <!-- 统计概览 -->
+  <view class="stats">
+    <view class="stat-card">
+      <view class="stat-num">{{stats.total}}</view>
+      <view class="stat-label">设备总数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num online">{{stats.online}}</view>
+      <view class="stat-label">在线</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num offline">{{stats.offline}}</view>
+      <view class="stat-label">离线</view>
+    </view>
+  </view>
+
+  <!-- 添加/编辑表单 -->
+  <view class="form-mask" wx:if="{{showForm}}" bindtap="closeForm">
+    <view class="form-card" catchtap="noop">
+      <view class="form-head">
+        <text class="form-title">{{editingTopic ? '编辑设备' : '添加设备'}}</text>
+        <text class="form-close" bindtap="closeForm">✕</text>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">主题（Topic）</view>
+        <input class="form-input" placeholder="如 light002 / soil001" value="{{form.topic}}" data-field="topic" bindinput="onFormInput" />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">设备名称</view>
+        <input class="form-input" placeholder="留空则使用主题名" value="{{form.name}}" data-field="name" bindinput="onFormInput" />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">设备类型</view>
+        <picker mode="selector" range="{{typeLabels}}" value="{{typeIndex}}" bindchange="onTypeChange">
+          <view class="form-input picker-value">{{typeLabels[typeIndex]}} ▾</view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">备注</view>
+        <input class="form-input" placeholder="可选，如放置位置等" value="{{form.remark}}" data-field="remark" bindinput="onFormInput" />
+      </view>
+
+      <view class="hint">主题需与巴法云控制台创建的主题一致；控制指令将发送到「主题/set」。</view>
+
+      <button class="btn-primary form-submit" bindtap="onSave">{{editingTopic ? '保存修改' : '添加设备'}}</button>
+    </view>
+  </view>
+
+  <!-- 设备列表 -->
+  <view class="list-head" wx:if="{{!empty}}">
+    <text class="section-title">设备列表</text>
+    <text class="add-btn" bindtap="openAddForm">＋ 添加设备</text>
+  </view>
+
+  <view class="device-card" wx:for="{{devices}}" wx:key="topic">
+    <view class="card-main" data-topic="{{item.topic}}" bindtap="goDetail">
+      <view class="card-icon">{{item._icon}}</view>
+      <view class="card-mid">
+        <view class="name-row">
+          <text class="device-name">{{item.name || item.topic}}</text>
+          <text class="device-type">{{item._typeLabel}}</text>
+        </view>
+        <view class="device-value">{{item._summary}}</view>
+        <view class="device-meta">主题 {{item.topic}}{{item.remark ? ' · ' + item.remark : ''}}</view>
+      </view>
+      <view class="online-line">
+        <view class="online-dot {{item._online ? 'online' : 'offline'}}"></view>
+        <text class="online-text">{{item._online ? '在线' : '离线'}}</text>
+      </view>
+    </view>
+    <view class="card-actions">
+      <button class="op-btn edit" size="mini" data-topic="{{item.topic}}" catchtap="onEdit">编辑</button>
+      <button class="op-btn delete" size="mini" data-topic="{{item.topic}}" catchtap="onDelete">删除</button>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{empty}}">
+    <view class="empty-icon">🛠️</view>
+    <view class="empty-text">暂无设备</view>
+    <view class="empty-desc">添加你在巴法云控制台创建的主题</view>
+    <button class="btn-primary" bindtap="openAddForm">添加设备</button>
+  </view>
+
+</view>

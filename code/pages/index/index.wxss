@@ -1,0 +1,162 @@
+/* pages/index/index.wxss */
+.page {
+  padding-bottom: 180rpx; /* 为自定义底部导航栏预留空间 */
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.status-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+}
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+  flex-shrink: 0;
+}
+.status-connected .status-dot {
+  background: #34c759;
+  box-shadow: 0 0 8rpx rgba(52, 199, 89, 0.6);
+}
+.status-connecting .status-dot {
+  background: #f7b500;
+  animation: pulse 1s infinite;
+}
+.status-disconnected .status-dot {
+  background: #c0c4cc;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.status-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2d3d;
+}
+.status-err {
+  font-size: 22rpx;
+  color: #e64340;
+  margin-left: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status-action-text {
+  font-size: 26rpx;
+  color: #12b7b5;
+  font-weight: 600;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 8rpx 8rpx 20rpx;
+}
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+.header-sub {
+  font-size: 24rpx;
+  color: #9aa0ac;
+}
+
+/* 设备卡片 */
+.device-card {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.card-icon {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 22rpx;
+  background: linear-gradient(135deg, #e6f7f7, #d3efef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.card-mid {
+  flex: 1;
+  min-width: 0;
+}
+.name-row {
+  display: flex;
+  align-items: center;
+}
+.device-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2d3d;
+  margin-right: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240rpx;
+}
+.device-type {
+  font-size: 20rpx;
+  color: #12b7b5;
+  background: #e6f7f7;
+  border-radius: 8rpx;
+  padding: 4rpx 10rpx;
+  flex-shrink: 0;
+}
+.device-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  margin-top: 10rpx;
+}
+.device-meta {
+  font-size: 22rpx;
+  color: #9aa0ac;
+  margin-top: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+.online-line {
+  display: flex;
+  align-items: center;
+}
+.online-text {
+  font-size: 24rpx;
+  color: #666;
+}
+.arrow {
+  font-size: 40rpx;
+  color: #c0c4cc;
+  line-height: 1;
+  margin-top: 8rpx;
+}

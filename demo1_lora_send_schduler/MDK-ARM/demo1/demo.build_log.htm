@@ -1,0 +1,68 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.30.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 onlyTT5@outlook.com, 1, LIC=9WSKC-7ZYP5-MMC9I-TVJVK-XKRDD-9IBKH
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.30.0.0
+Toolchain Path:  d:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.14
+Assembler:       Armasm.exe V6.14
+Linker/Locator:  ArmLink.exe V6.14
+Library Manager: ArmAr.exe V6.14
+Hex Converter:   FromElf.exe V6.14
+CPU DLL:         SARMCM3.DLL V5.30.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.38.0
+Dialog DLL:      TCM.DLL V1.42.0.0
+ 
+<h2>Project:</h2>
+D:\嵌入式\15.STM32物联\06-软件设计\19-项目整合\02-代码\demo1_lora_send_schduler\MDK-ARM\demo.uvprojx
+Project File Date:  08/15/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.14', folder: 'd:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'demo1'
+../User/app/app_main.c(76): warning: implicitly declaring library function 'printf' with type 'int (const char *, ...)' [-Wimplicit-function-declaration]
+        printf("\r\n========================================\r\n");
+        ^
+../User/app/app_main.c(76): note: include the header <stdio.h> or explicitly provide a declaration for 'printf'
+1 warning generated.
+compiling app_main.c...
+compiling app_lora.c...
+compiling soil.c...
+compiling llcc68_p2p.c...
+linking...
+Program Size: Code=22532 RO-data=1444 RW-data=48 ZI-data=2424  
+FromELF: creating hex file...
+"demo1\demo.axf" - 0 Error(s), 1 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F1xx_DFP.2.4.1.pack
+                Keil.STM32F1xx_DFP.2.4.1
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_demo1
+  d:\Users\onlyT\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  d:\Users\onlyT\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

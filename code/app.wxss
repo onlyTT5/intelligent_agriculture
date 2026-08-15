@@ -1,0 +1,152 @@
+/* 全局样式 */
+page {
+  background: #f5f6fa;
+  font-size: 28rpx;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.page {
+  padding: 24rpx 32rpx 60rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+/* 卡片 */
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2d3d;
+  margin-bottom: 20rpx;
+}
+
+.card-sub {
+  font-size: 24rpx;
+  color: #9aa0ac;
+}
+
+/* 按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #12b7b5, #0e9e9c);
+  color: #ffffff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  padding: 0 48rpx;
+  margin: 0;
+}
+.btn-primary::after {
+  border: none;
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #12b7b5;
+  border: 2rpx solid #12b7b5;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  padding: 0 40rpx;
+  margin: 0 12rpx;
+}
+.btn-outline::after {
+  border: none;
+}
+
+.btn-danger {
+  background: #ffffff;
+  color: #e64340;
+  border: 2rpx solid #e64340;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  padding: 0 40rpx;
+  margin: 0 12rpx;
+}
+.btn-danger::after {
+  border: none;
+}
+
+/* 在线状态圆点 */
+.online-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+.online-dot.online {
+  background: #34c759;
+  box-shadow: 0 0 8rpx rgba(52, 199, 89, 0.6);
+}
+.online-dot.offline {
+  background: #c0c4cc;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding-top: 140rpx;
+}
+.empty-icon {
+  font-size: 96rpx;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 48rpx;
+}
+
+/* 表单 */
+.form-item {
+  margin-bottom: 28rpx;
+}
+.form-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+.form-input {
+  background: #f5f6fa;
+  border-radius: 12rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-input.placeholder {
+  color: #c0c4cc;
+}
+
+/* 列表分隔 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2d3d;
+  margin: 32rpx 8rpx 16rpx;
+}
+
+/* 提示文字 */
+.hint {
+  font-size: 24rpx;
+  color: #9aa0ac;
+  line-height: 1.6;
+}

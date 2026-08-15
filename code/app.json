@@ -1,0 +1,39 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/detail/detail",
+        "pages/manage/manage",
+        "pages/mine/mine"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#12b7b5",
+        "navigationBarTitleText": "巴法云物联",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#f5f6fa"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#7a8194",
+        "selectedColor": "#12b7b5",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "设备"
+            },
+            {
+                "pagePath": "pages/manage/manage",
+                "text": "管理"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
+}

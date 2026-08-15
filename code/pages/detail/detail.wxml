@@ -1,0 +1,159 @@
+<view class="page">
+
+  <!-- 设备不存在 -->
+  <view class="empty" wx:if="{{notFound}}">
+    <view class="empty-icon">🔍</view>
+    <view class="empty-text">设备不存在或已删除</view>
+    <button class="btn-primary" bindtap="goBack">返回</button>
+  </view>
+
+  <block wx:if="{{!notFound && device}}">
+
+    <!-- 设备头部 -->
+    <view class="detail-header">
+      <view class="detail-icon">{{typeIcon}}</view>
+      <view class="detail-info">
+        <view class="detail-name">{{device.name || topic}}</view>
+        <view class="detail-topic">主题：{{topic}} · {{typeLabel}}</view>
+        <view class="detail-status">
+          <view class="online-dot {{device._online ? 'online' : 'offline'}}"></view>
+          <text class="detail-online">{{device._online ? '在线' : '离线'}}</text>
+          <text class="detail-last">最近更新 {{lastUpdateText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 灯控开关 -->
+    <view class="card" wx:if="{{device.type === 'light'}}">
+      <view class="card-title">灯控开关</view>
+      <view class="light-row">
+        <view class="light-info">
+          <view class="light-state {{lightOn ? 'on' : 'off'}}">{{lightOn ? '已开启' : '已关闭'}}</view>
+          <view class="light-desc">切换开关将向主题 {{topic}}/set 发送 on / off 指令</view>
+        </view>
+        <switch checked="{{lightOn}}" color="#12b7b5" disabled="{{sending}}" bindchange="onLightChange" />
+      </view>
+    </view>
+
+    <!-- 传感器数据 -->
+    <view class="card" wx:if="{{device.type !== 'light'}}">
+      <view class="card-title">实时数据</view>
+      <view class="sensor-grid">
+        <view class="sensor-item" wx:for="{{sensorItems}}" wx:key="label">
+          <view class="sensor-value">{{item.value}}</view>
+          <view class="sensor-label">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 灯也展示最近摘要 -->
+    <view class="card" wx:if="{{device.type === 'light' && device.raw}}">
+      <view class="card-title">当前状态</view>
+      <view class="raw-msg">{{device.raw}}</view>
+    </view>
+
+    <!-- 最近消息 -->
+    <view class="card" wx:if="{{device.raw && device.type !== 'light'}}">
+      <view class="card-title">最近消息</view>
+      <view class="raw-msg">{{device.raw}}</view>
+    </view>
+
+    <!-- 微信预警 -->
+    <view class="card" wx:if="{{supportAlert}}">
+      <view class="card-title alert-title">
+        <text>微信预警</text>
+        <switch checked="{{alertForm.enabled}}" color="#12b7b5" bindchange="onAlertSwitch" />
+      </view>
+
+      <block wx:if="{{alertForm.enabled}}">
+        <view class="form-row" wx:if="{{device.type === 'humiture'}}">
+          <view class="form-item half">
+            <view class="form-label">温度上限（°C）</view>
+            <input class="form-input" type="digit" value="{{alertForm.tempMax}}" data-field="tempMax" bindinput="onAlertInput" />
+          </view>
+          <view class="form-item half">
+            <view class="form-label">温度下限（°C）</view>
+            <input class="form-input" type="digit" value="{{alertForm.tempMin}}" data-field="tempMin" bindinput="onAlertInput" />
+          </view>
+        </view>
+        <view class="form-row" wx:if="{{device.type === 'humiture'}}">
+          <view class="form-item half">
+            <view class="form-label">湿度上限（%）</view>
+            <input class="form-input" type="digit" value="{{alertForm.humMax}}" data-field="humMax" bindinput="onAlertInput" />
+          </view>
+          <view class="form-item half">
+            <view class="form-label">冷却间隔（分钟）</view>
+            <input class="form-input" type="number" value="{{alertForm.cooldown}}" data-field="cooldown" bindinput="onAlertInput" />
+          </view>
+        </view>
+        <view class="form-row" wx:if="{{device.type === 'co2'}}">
+          <view class="form-item half">
+            <view class="form-label">CO2 上限（ppm）</view>
+            <input class="form-input" type="digit" value="{{alertForm.co2Max}}" data-field="co2Max" bindinput="onAlertInput" />
+          </view>
+          <view class="form-item half">
+            <view class="form-label">冷却间隔（分钟）</view>
+            <input class="form-input" type="number" value="{{alertForm.cooldown}}" data-field="cooldown" bindinput="onAlertInput" />
+          </view>
+        </view>
+        <view class="form-row" wx:if="{{device.type === 'soil'}}">
+          <view class="form-item half">
+            <view class="form-label">湿度下限（%）</view>
+            <input class="form-input" type="digit" value="{{alertForm.soilMin}}" data-field="soilMin" bindinput="onAlertInput" />
+          </view>
+          <view class="form-item half">
+            <view class="form-label">冷却间隔（分钟）</view>
+            <input class="form-input" type="number" value="{{alertForm.cooldown}}" data-field="cooldown" bindinput="onAlertInput" />
+          </view>
+        </view>
+        <button class="btn-outline alert-save" bindtap="onSaveAlert">保存预警设置</button>
+      </block>
+
+      <view class="hint alert-hint">开启后，当设备数据超过阈值将自动向微信推送通知（需先在巴法云控制台绑定微信）。冷却期内不会重复提醒。</view>
+
+      <view class="alert-actions">
+        <button class="btn-outline" size="mini" bindtap="onTestAlert" disabled="{{alertTesting}}">{{alertTesting ? '发送中…' : '发送测试通知'}}</button>
+      </view>
+
+      <view class="alert-result" wx:if="{{lastAlert}}">
+        <text class="alert-ok {{lastAlert.ok ? 'success' : 'fail'}}">{{lastAlert.ok ? '✓ 已发送' : '✗ 发送失败'}}</text>
+        <text class="alert-time">{{lastAlert.timeText}}</text>
+        <text class="alert-err" wx:if="{{lastAlert.error}}">（{{lastAlert.error}}）</text>
+      </view>
+    </view>
+
+    <!-- 自定义指令（灯除外，灯用开关） -->
+    <view class="card" wx:if="{{device.type !== 'light'}}">
+      <view class="card-title">发送指令</view>
+      <view class="cmd-row">
+        <input
+          class="cmd-input"
+          placeholder="输入要发送的指令内容"
+          value="{{command}}"
+          bindinput="onCommandInput"
+        />
+        <button class="btn-small" size="mini" bindtap="onSendCommand">发送</button>
+      </view>
+      <view class="hint">指令发送到 {{topic}}/set，仅推送给设备，不会回传给自己。</view>
+    </view>
+
+    <!-- 消息记录 -->
+    <view class="card" wx:if="{{log.length}}">
+      <view class="card-title">消息记录</view>
+      <view class="log-list">
+        <view class="log-item" wx:for="{{log}}" wx:key="time">
+          <view class="log-time">{{item.timeText}}</view>
+          <view class="log-msg">{{item.message}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作 -->
+    <view class="actions">
+      <button class="btn-outline" bindtap="onEdit">编辑设备</button>
+      <button class="btn-outline" bindtap="onRefresh">刷新</button>
+    </view>
+
+  </block>
+
+</view>
